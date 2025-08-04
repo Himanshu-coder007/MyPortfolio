@@ -3,18 +3,91 @@ import { useTheme } from "./context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const name = "Himanshu Nagose";
 const nameArray = name.split("");
+const techStack = ["React", "Node.js", "Next.js","JavaScript", "TypeScript", "MongoDB", "Express", "Tailwind CSS","SQL", "MySQL"];
 
 export default function Home() {
   const { theme } = useTheme();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorVariant, setCursorVariant] = useState("default");
+
+  useEffect(() => {
+    const mouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", mouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+    };
+  }, []);
+
+  const variants = {
+    default: {
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 16,
+      backgroundColor: theme === 'dark' ? '#4ade80' : '#16a34a',
+    },
+    text: {
+      height: 100,
+      width: 100,
+      x: mousePosition.x - 50,
+      y: mousePosition.y - 50,
+      backgroundColor: theme === 'dark' ? '#4ade80' : '#16a34a',
+      mixBlendMode: "difference",
+    }
+  };
+
+  const textEnter = () => setCursorVariant("text");
+  const textLeave = () => setCursorVariant("default");
 
   return (
-    <main className={`min-h-screen pt-24 px-4 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="max-w-7xl mx-auto">
+    <main className={`min-h-screen pt-12 px-4 overflow-hidden relative ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
+      {/* Animated background elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              opacity: 0.1,
+              scale: 0.5
+            }}
+            animate={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              transition: {
+                duration: 20 + Math.random() * 20,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }
+            }}
+            className={`absolute rounded-full ${theme === 'dark' ? 'bg-green-900' : 'bg-green-200'}`}
+            style={{
+              width: `${Math.random() * 10 + 5}rem`,
+              height: `${Math.random() * 10 + 5}rem`,
+              filter: "blur(40px)"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Custom cursor */}
+      <motion.div
+        className="fixed top-0 left-0 h-8 w-8 rounded-full pointer-events-none z-50"
+        variants={variants}
+        animate={cursorVariant}
+        transition={{ type: "spring", mass: 0.1 }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Hero Section */}
-        <section className="py-12 md:py-24 relative">
+        <section className="py-8 md:py-16 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -22,8 +95,20 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h1 className={`text-4xl md:text-5xl font-bold ${theme === 'dark' ? 'text-green-400' : 'text-green-600'}`}>
-                Hello, I'm{" "}
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`text-lg ${theme === 'dark' ? 'text-green-400' : 'text-green-600'} font-mono`}
+              >
+                Hi, my name is
+              </motion.p>
+              
+              <h1 
+                className={`text-4xl md:text-6xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
+                onMouseEnter={textEnter}
+                onMouseLeave={textLeave}
+              >
                 <span className="inline-block">
                   <AnimatePresence>
                     {nameArray.map((letter, index) => (
@@ -36,6 +121,7 @@ export default function Home() {
                           delay: index * 0.1,
                         }}
                         style={{ display: "inline-block" }}
+                        className={`${theme === 'dark' ? 'hover:text-green-400' : 'hover:text-green-600'} transition-colors`}
                       >
                         {letter === " " ? "\u00A0" : letter}
                       </motion.span>
@@ -44,37 +130,99 @@ export default function Home() {
                 </span>
               </h1>
               
-              <p className={`text-xl ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                Full Stack Developer | BTech Graduate from Bajaj Institute of Technology
-              </p>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className={`text-2xl md:text-3xl font-semibold ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}
+              >
+                I build things for the web.
+              </motion.h2>
               
-              <div className="flex flex-wrap gap-4 pt-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link 
-                    href="/about" 
-                    className={`px-6 py-3 rounded-md font-medium ${
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className={`text-lg max-w-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}
+              >
+                Full Stack Developer specializing in modern JavaScript frameworks. 
+                BTech Graduate from Bajaj Institute of Technology with a passion 
+                for creating efficient, scalable web applications.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="flex flex-wrap gap-4 pt-4"
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  <a 
+                    href="https://drive.google.com/file/d/1FrpmNPHIo3jpbr4PWjjf7ydsjLcIFovM/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-6 py-3 rounded-md font-medium transition-all ${
                       theme === 'dark'
                         ? 'bg-green-900 text-green-300 hover:bg-green-800'
                         : 'bg-green-600 text-white hover:bg-green-700'
                     }`}
                   >
-                    More About Me
-                  </Link>
+                    View Resume
+                  </a>
                 </motion.div>
                 
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link 
-                    href="/contact" 
-                    className={`px-6 py-3 rounded-md font-medium ${
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  <Link
+                    href="/contact"
+                    className={`px-6 py-3 rounded-md font-medium border ${
                       theme === 'dark'
-                        ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        ? 'border-green-400 text-green-400 hover:bg-green-900/50'
+                        : 'border-green-600 text-green-600 hover:bg-green-100'
                     }`}
                   >
-                    Contact
+                    Contact Me
                   </Link>
                 </motion.div>
-              </div>
+              </motion.div>
+              
+              {/* Tech stack animation */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="pt-8"
+              >
+                <p className={`text-sm mb-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                  Tech I work with:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.map((tech, index) => (
+                    <motion.div
+                      key={tech}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 + index * 0.1 }}
+                      className={`px-3 py-1 rounded-full text-sm ${
+                        theme === 'dark' 
+                          ? 'bg-gray-800 text-green-400' 
+                          : 'bg-green-100 text-green-800'
+                      }`}
+                    >
+                      {tech}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
             
             <motion.div
@@ -85,7 +233,7 @@ export default function Home() {
             >
               <div className={`w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 ${
                 theme === 'dark' ? 'border-green-400' : 'border-green-600'
-              } shadow-lg`}>
+              } shadow-lg relative z-10`}>
                 <Image
                   src="/images/Photo.png"
                   alt="Himanshu Nagose"
@@ -104,6 +252,37 @@ export default function Home() {
                   theme === 'dark' ? 'border-green-900' : 'border-green-200'
                 } top-0 left-1/2 transform -translate-x-1/2`}
               />
+              
+              {/* Floating tech icons around the photo */}
+              {[
+                { icon: "react", top: "10%", left: "10%" },
+                { icon: "node", top: "15%", left: "80%" },
+                { icon: "next", top: "80%", left: "20%" },
+                { icon: "typescript", top: "85%", left: "75%" },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    z: [0, -15, 0],
+                  }}
+                  transition={{
+                    delay: 0.5 + index * 0.2,
+                    duration: 4 + Math.random() * 3,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                  className={`absolute text-2xl ${theme === 'dark' ? 'text-green-400' : 'text-green-600'}`}
+                  style={{ top: item.top, left: item.left }}
+                >
+                  {item.icon === "react" && "⚛️"}
+                  {item.icon === "node" && "🟢"}
+                  {item.icon === "next" && "⏭️"}
+                  {item.icon === "typescript" && "📘"}
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </section>
