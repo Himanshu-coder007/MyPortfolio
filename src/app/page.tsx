@@ -253,20 +253,20 @@ export default function Home() {
                 } top-0 left-1/2 transform -translate-x-1/2`}
               />
               
-              {/* Floating tech icons around the photo */}
+              {/* Floating MERN stack icons around the photo */}
               {[
-                { icon: "react", top: "10%", left: "10%" },
-                { icon: "node", top: "15%", left: "80%" },
-                { icon: "next", top: "80%", left: "20%" },
-                { icon: "typescript", top: "85%", left: "75%" },
+                { icon: "mongodb", top: "10%", left: "10%", emoji: "🍃", tooltip: "MongoDB" },
+                { icon: "express", top: "15%", left: "80%", emoji: "🚀", tooltip: "Express" },
+                { icon: "react", top: "80%", left: "20%", emoji: "⚛️", tooltip: "React" },
+                { icon: "node", top: "85%", left: "75%", emoji: "🟢", tooltip: "Node.js" },
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    z: [0, -15, 0],
+                    opacity: [0.7, 1, 0.7], 
+                    y: [0, -15, 0],
+                    rotate: [0, 10, -10, 0],
                   }}
                   transition={{
                     delay: 0.5 + index * 0.2,
@@ -274,13 +274,19 @@ export default function Home() {
                     repeat: Infinity,
                     repeatType: "reverse"
                   }}
-                  className={`absolute text-2xl ${theme === 'dark' ? 'text-green-400' : 'text-green-600'}`}
+                  className={`absolute text-3xl ${theme === 'dark' ? 'text-green-400' : 'text-green-600'} 
+                    hover:scale-125 transition-transform cursor-default group`}
                   style={{ top: item.top, left: item.left }}
+                  whileHover={{ scale: 1.3 }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
                 >
-                  {item.icon === "react" && "⚛️"}
-                  {item.icon === "node" && "🟢"}
-                  {item.icon === "next" && "⏭️"}
-                  {item.icon === "typescript" && "📘"}
+                  {item.emoji}
+                  <span className={`absolute left-1/2 -translate-x-1/2 mt-2 px-2 py-1 text-xs rounded-md 
+                    ${theme === 'dark' ? 'bg-gray-800 text-green-400' : 'bg-green-100 text-green-800'} 
+                    opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap`}>
+                    {item.tooltip}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
