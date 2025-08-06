@@ -1,8 +1,11 @@
 import React from 'react'
+import Intro from '../components/about/Intro'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <Intro/>
+    </div>
   )
 }
 
