@@ -1,16 +1,14 @@
-import React from 'react'
-import Intro from '../components/about/Intro'
-import Education from '../components/about/Education'
-import TechStack from '../components/about/TechStack'
+import React from "react";
+import Intro from "../components/about/Intro";
+import Education from "../components/about/Education";
 
 const page = () => {
   return (
     <div>
-      <Intro/>
-      <Education/>
-      <TechStack/>
+      <Intro />
+      <Education />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
