@@ -8,39 +8,40 @@ const ProjectsPage = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Job Portal",
       description:
-        "A full-stack e-commerce application with user authentication, product catalog, and payment integration.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubLink: "https://github.com/username/ecommerce-platform",
-      demoLink: "https://ecommerce-demo.example.com",
-      imageUrl: "/images/projects/ecommerce.jpg",
+        "Developed a web-based job portal enabling admin to register companies, post job openings, and manage applications. Implemented user authentication for job seekers to apply for positions, upload resumes, and track application status. Integrated an admin dashboard for reviewing resumes and selecting or rejecting candidates, streamlining the recruitment process.",
+      technologies: ["React", "Node.js", "MongoDB", "Redux", "JWT Authentication","Cloudinary"],
+      githubLink: "https://github.com/Himanshu-coder007/Job-Portal",
+      demoLink: "https://job-portal-livid-rho.vercel.app/",
+      imageUrl: "/projects/jobportal.png",
     },
     {
-      title: "Task Management App",
+      title: "Chat Application",
       description:
-        "A productivity application for managing tasks with drag-and-drop functionality and team collaboration features.",
-      technologies: ["TypeScript", "Next.js", "Firebase", "Tailwind CSS"],
-      githubLink: "https://github.com/username/task-manager",
-      demoLink: "https://task-manager-demo.example.com",
-      imageUrl: "/images/projects/task-manager.jpg",
+        "Developed a web-based chat platform allowing users to register, log in, and communicate with all active users in real time. Implemented user authentication, real-time messaging, and online user tracking to enhance engagement. Designed a responsive interface for seamless communication across devices.",
+      technologies: ["React", "Node.js", "MongoDB", "Redux", "Socket.io"],
+      githubLink: "https://github.com/Himanshu-coder007/Chat-application",
+      demoLink: "https://chat-application-neon-eight.vercel.app/",
+      imageUrl: "/projects/chat.png",
     },
     {
       title: "Weather Dashboard",
       description:
         "Real-time weather information dashboard with 5-day forecast and location-based services.",
       technologies: ["React", "OpenWeather API", "Chart.js", "Geolocation API"],
-      githubLink: "https://github.com/username/weather-dashboard",
-      imageUrl: "/images/projects/weather.jpg",
+      githubLink: "https://github.com/Himanshu-coder007/task-1/tree/main/Wether-APP",
+      demoLink: "https://weather-app-task1.netlify.app/",
+      imageUrl: "/projects/weather.png",
     },
     {
-      title: "AI Image Generator",
+      title: "Expense Manger",
       description:
-        "Web application that generates images based on text prompts using AI models.",
-      technologies: ["Next.js", "OpenAI API", "Cloudinary", "Tailwind CSS"],
-      githubLink: "https://github.com/username/ai-image-generator",
-      demoLink: "https://ai-image-demo.example.com",
-      imageUrl: "/images/projects/ai-generator.jpg",
+        " Built a web-based expense tracking system where users can register, add income sources, and record daily expenses. Implemented automatic balance calculation and integrated interactive graphs to visualize monthly income and expense trends. Developed features to display recent transactions and monthly summaries, enabling users to efficiently monitor and manage their finances.",
+      technologies: ["Reactjs","Firebase","Chart.js"],
+      githubLink: "https://github.com/Himanshu-coder007/Expense-Tracker",
+      demoLink: "https://expense-tracker-beta-murex.vercel.app/",
+      imageUrl: "/projects/expensetracker.png",
     },
   ];
 
