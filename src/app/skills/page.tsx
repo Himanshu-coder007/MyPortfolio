@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
@@ -34,11 +34,6 @@ const TechStack = () => {
     { name: "Figma", icon: "/tech-icons/figma.svg" },
     { name: "Netlify", icon: "/tech-icons/netlify.svg" },
   ];
-
-  // For local development, you might want to use these alternatives:
-  // const iconBasePath = '/public/tech-icons/';
-  // or import them directly if you're using Create React App:
-  // import JavaIcon from '../../public/tech-icons/java.svg';
 
   return (
     <div
@@ -76,9 +71,11 @@ const TechStack = () => {
               >
                 <div className="w-16 h-16 mb-4 flex items-center justify-center">
                   {tech.icon.endsWith(".svg") ? (
-                    <img
+                    <Image
                       src={tech.icon}
                       alt={tech.name}
+                      width={64}
+                      height={64}
                       className="w-full h-full object-contain"
                     />
                   ) : (

@@ -108,11 +108,11 @@ const Intro = () => {
               }`}>
                 <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>
                   I am a passionate web developer who loves to tackle and solve programming challenges. 
-                  Since my academic days, I've participated in two national-level hackathons - SIH 2023 
+                  Since my academic days, I&apos;ve participated in two national-level hackathons - SIH 2023 
                   and IISF 2024, showcasing my problem-solving skills and technical prowess.
                 </p>
                 <p className={`mt-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>
-                  I'm particularly excited about implementing AI technologies in web development to create 
+                  I&apos;m particularly excited about implementing AI technologies in web development to create 
                   smarter, more intuitive applications. As a fast and eager learner, I pride myself on being 
                   detail-oriented and adaptable to changing project requirements, ensuring I can quickly 
                   pivot to meet business goals and deliver exceptional results.

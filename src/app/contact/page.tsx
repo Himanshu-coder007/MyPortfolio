@@ -113,7 +113,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-800'}`}
               >
-                Thanks for your message! I'll get back to you soon.
+                Thanks for your message! I&apos;ll get back to you soon.
               </motion.div>
             )}
             
@@ -317,7 +317,7 @@ const Contact = () => {
                 Availability
               </h2>
               <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                I'm currently looking for new opportunities. My inbox is always open for potential collaborations or just to say hello!
+                I&apos;m currently looking for new opportunities. My inbox is always open for potential collaborations or just to say hello!
               </p>
               <div className="flex items-center gap-2">
                 <span className={`inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse`}></span>
